@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from blog.views import index, show_profile, redirect_to_new_post_page
+from blog.views import index, show_profile, redirect_to_new_post_page, show_edit_userdata_page, edit_profile
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,5 +24,7 @@ urlpatterns = [
     url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^show_profile/$', show_profile, name='show_profile'),
     url(r'^new_post/$', redirect_to_new_post_page, name='redirect_to_new_post_page'),
+    url(r'^editprofile/$', show_edit_userdata_page, name='show_edit_userdata_page'),
+    url(r'^apply_form_edit/$', edit_profile, name='edit_profile'),
 
 ]
