@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     'bootstrap_themes',
     'django_wysiwyg',
     'tinymce',
+    'registration',
     'tagging',
+    'social.apps.django_app.default',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
 ]
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/'
+EMAIL_HOST = 'mailtrap.io'
+EMAIL_HOST_USER = '371cbe7048c74b'
+EMAIL_HOST_PASSWORD = '4a080c15f17eea'
+EMAIL_PORT = '2525'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +77,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -127,3 +139,20 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1842287662672758'
+SOCIAL_AUTH_FACEBOOK_SECRET = '38c5ac4fa1fb90edc50642639efe920d'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '825066979622-63uoj8ck6na3r5tqkh9j7dld914k0psg'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'vQZyxHS9ITDaVjyGBL6vytSz'

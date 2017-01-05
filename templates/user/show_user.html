@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body %}
+    <div class="col-xs-6">
+
+            <h1>Twoje dane osobiste:</h1>
+            {% if not user.first_name or not user.last_name %}
+            <p><b>Edytuj swój profil, by uzupełnić dane</b></p>
+            {% endif %}
+
+        <div class="thumbnail"> <!-- thumbnail 1 -->
+            <p><b>Imię</b></p>
+            <p>{{ user.first_name }}</p>
+        </div>
+        <div class="thumbnail"> <!-- thumbnail 1 -->
+            <p><b>Nazwisko</b></p>
+            <p>{{ user.last_name }}</p>
+        </div>
+        <div class="thumbnail"> <!-- thumbnail 1 -->
+            <p><b>E-mail</b></p>
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="thumbnail"> <!-- thumbnail 1 -->
+            <p><b>Data rejestracji</b></p>
+            <p>{{ user.date_joined }}</p>
+        </div>
+        <a href="{% url 'show_edit_userdata_page' %}" class="btn btn-primary btn-lg btn-block" role="button" aria-disabled="true">Edytuj</a>
+
+    </div>
+    <div class="col-xs-6">
+        <h2>Tu zobaczysz swoje statystyki!</h2>
+    </div>
+{% endblock %}

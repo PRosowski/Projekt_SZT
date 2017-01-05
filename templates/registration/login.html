@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body %}
+    <div class="col-xs-6" >
+        <div class="panel panel-info">
+            <div class="panel-heading" style="background-color:#444444;
+color: aliceblue;">Zaloguj sie
+            </div>
+            <div class="panel-body">
+                <form method="post" action=".">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a href="{% url 'social:begin' 'facebook' %}" class="btn
+btn-lg btn-primary btn-block">Facebook</a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}"
+                               class="btn btn-lg btn-info btn-block"
+                               style="background-color:#cb2027; outline:#cb2027;">Google</a>
+                        </div>
+                    </div>
+                    <div class="login-or">
+                        <hr class="hr-or">
+                        <span class="span-or">lub</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">Nazwa użytkownika</label>
+                        <input type="text" class="form-control"
+                               id="inputUsernameEmail" name="username">
+                    </div>
+                    <div class="form-group">
+                        <a class="pull-right" href="{% url
+'auth_password_reset' %}">Zapomniałeś hasła?</a>
+                        <label for="inputPassword">Hasło</label><input type="password" class="form-control"
+                                                                       id="inputPassword" name="password">
+                    </div>
+                    <div class="checkbox pull-right">
+                        <label>
+                            <input type="checkbox">
+                            Pamiętaj mnie </label>
+                    </div>
+                    <button type="submit" class="btn
+btn-default">Zatwierdź
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
