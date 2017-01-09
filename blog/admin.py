@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'description')
+    list_display = ('title', 'description')
 
 
 class CommentAdmin(admin.ModelAdmin):

@@ -8,13 +8,12 @@ from django.contrib.auth.models import User
 from tinymce import models as tinymce_models
 
 
-# def get_image_path(instance, filename):
-#     return os.path.join('post', str(instance.id), filename)
+def get_image(filename):
+    return os.path.join('post', str(Post.pk), filename)
 
 
 class Category(models.Model):
     title = models.CharField(max_length=250, help_text='Maksymalnie 100 znakow')
-    slug = models.SlugField(unique=True, help_text="Wartocd generowana z tytulu. Musi byc unikalna")
     description = models.TextField(help_text="Opis kategorii.")
 
     class Meta:
@@ -43,9 +42,10 @@ class Post(models.Model):
         default=timezone.now)
     published_date = models.DateTimeField(
         blank=True, null=True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, related_name="posts")
     tags = TagField()
-    #post_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    post_image = models.ImageField(upload_to=get_image)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def publish(self):
         self.published_date = timezone.now()

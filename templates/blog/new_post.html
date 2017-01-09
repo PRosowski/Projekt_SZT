@@ -1,28 +1,52 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block body %}
     <div class="col-xs-6">
         <div class="panel panel-info">
             <div class="panel-heading">Stwórz post</div>
             <div class="panel-body">
-                <form method="post" action="{% url 'edit_profile' %}">
+                <form method="post" action="{% url 'new_post' %}">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="title">Tytuł</label>
-                        <input type="text" class="form-control" id="title"
+                        <label for="id_title">Tytuł</label>
+                        <input type="text" class="form-control" id="id_title"
                                name="title" required="true">
                     </div>
                     <div class="form-group">
-                        <label for="excerpt">Streszczenie</label>
+                        <label for="id_excerpt">Streszczenie</label>
                         <input type="text" class="form-control"
-                               id="excerpt" name="excerpt" required="true">
+                               id="id_excerpt" name="excerpt" required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_content">Treść</label>
+                        {{ form.content }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_category">Kategoria</label>
+                        {{ form.categories }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_status">Status</label>
+                        <select name="status" id="id_status">
+                            <option value="1">Publiczna</option>
+                            <option value="2">Szkic</option>
+                            <option value="3">Ukryty</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_tags">Tagi</label>
+                        <input type="text" class="form-control" id="id_tags"
+                               name="tags" required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_post_image">Post image:</label>
+                        {{ form.post_image }}
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Zapisz</button>
                 </form>
             </div>
         </div>
     </div>
-    <div class="col-xs-6">
-        <h2>Tu zobaczysz swoje statystyki!</h2>
-    </div>
+
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block body %}
+    <div class="col-lg-6">
+        <div class="entry-post">
+            <div class="post-content">
+                <div class="entry-thumbnail">
+                    <a href="#"><img class="img-responsive" src=""
+                                     alt="Image"></a>
+                </div>
+                <div class="time">
+                    <a href="#">{{ post.published_date }}</a>
+                </div>
+            </div>
+            <div class="entry-title">
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+            </div>
+            {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'post_modify' pk=post.pk %}"><span
+                        class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+            <p>{{ post.content }}.</p>
+        </div>
+    </div>
+{% endblock %}
