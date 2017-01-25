@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Category
+from .models import Post, Category, Comment
 from django.contrib.auth.models import User
 from tinymce.widgets import TinyMCE
 
@@ -23,4 +23,9 @@ class PostForm(forms.ModelForm):
     js = ('/media/tinymce/jscripts/tiny_mce/tiny_mce.js',
             '',)
 
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
 
