@@ -6,10 +6,11 @@ from tagging.fields import TagField
 from django.utils import timezone
 from django.contrib.auth.models import User
 from tinymce import models as tinymce_models
+from django.contrib.auth.models import User, models
+User._meta.local_fields[4].__dict__['_unique'] = True
 
-
-def get_image(filename):
-    return os.path.join('post', str(Post.pk), filename)
+def get_image(instance, filename):
+    return '/'.join(['content', instance.author.username, filename])
 
 
 class Category(models.Model):
@@ -31,13 +32,12 @@ class Post(models.Model):
     STATUS_CHOICES = (
         (1, 'Live'),
         (2, 'Szkic'),
-        (3, 'Ukryty'),
     )
     author = models.ForeignKey(User)
     title = models.CharField(max_length=250, help_text='Maksymalnie 250 znakow')
-    excerpt = models.TextField(blank=True,
+    excerpt = models.CharField(blank=True, max_length=500,
                                help_text='Krotkie podsumowanie. Opcjonalne')
-    content = tinymce_models.HTMLField()
+    content = models.TextField()
     created_date = models.DateTimeField(
         default=timezone.now)
     published_date = models.DateTimeField(
@@ -49,6 +49,7 @@ class Post(models.Model):
 
     def publish(self):
         self.published_date = timezone.now()
+        self.status = 1
         self.save()
 
     def __str__(self):

@@ -14,8 +14,13 @@ class UserForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
-
+    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all().exclude(id=1))
+    content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
     class Meta:
         model = Post
         fields = ['title', 'excerpt', 'content', 'tags', 'status', 'post_image', 'categories']
+
+    js = ('/media/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '',)
+
+
