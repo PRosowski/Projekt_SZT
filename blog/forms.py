@@ -20,6 +20,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'excerpt', 'content', 'tags', 'status', 'post_image', 'categories']
 
+
     js = ('/media/tinymce/jscripts/tiny_mce/tiny_mce.js',
             '',)
 

@@ -2,26 +2,32 @@ body {
     background-color: ghostwhite;
     padding-top: 70px;
 }
+
 .blog-section .entry-post {
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 30px;
     padding-top: 20px;
 }
+
 .post-content {
     position: relative;
 }
+
 .entry-thumbnail {
     overflow: hidden;
 }
-.entry-thumbnail img{
-  transition: all 500ms;
+
+.entry-thumbnail img {
+    transition: all 500ms;
 }
+
 .post-content .time {
     position: absolute;
     left: 0;
     bottom: 0;
 }
+
 .post-content .time a {
     color: #fff;
     font-size: 18px;
@@ -34,10 +40,12 @@ body {
     display: block;
     text-decoration: none;
 }
+
 .post-content .time a span {
     font-size: 34px;
     font-weight: 600;
 }
+
 .entry-post .entry-title a {
     font-size: 24px;
     color: #000;
@@ -47,4 +55,21 @@ body {
     margin-top: 20px;
     margin-bottom: 10px;
     text-decoration: none;
+}
+
+#id_title {
+    width: 100%;
+}
+
+#id_excerpt {
+    width: 100%;
+}
+
+#id_content {
+    width: 100%;
+}
+
+.panel2 {
+    background-color: #ef800e;
+    padding: 10px 15px;
 }

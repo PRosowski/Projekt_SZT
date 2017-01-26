@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block content %}
-<p>{% trans "Logged out" %}</p>
+{% block body %}
+    <h3>Zostałeś wylogowany</h3>
+    <p>Kliknij <a href="{% url 'index' %}"><b>tutaj</b></a> by powrócić na stronę główną</p>
 {% endblock %}

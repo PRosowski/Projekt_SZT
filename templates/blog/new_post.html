@@ -4,46 +4,40 @@
 {% block body %}
     <div class="col-xs-6">
         <div class="panel panel-info">
-            <div class="panel-heading">Stwórz post</div>
-            <div class="panel-body">
-                <form method="post" action="{% url 'new_post' %}">
+            <div class="panel2">Stwórz post</div>
+            <p class="panel-body">
+                <form method="POST" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
-                    <div class="form-group">
+                    <p>
                         <label for="id_title">Tytuł</label>
-                        <input type="text" class="form-control" id="id_title"
-                               name="title" required="true">
-                    </div>
-                    <div class="form-group">
+                        {{ form.title }}
+                    </p>
+                    <p>
                         <label for="id_excerpt">Streszczenie</label>
-                        <input type="text" class="form-control"
-                               id="id_excerpt" name="excerpt" required="true">
-                    </div>
-                    <div class="form-group">
+                        {{ form.excerpt }}
+                    </p>
+                    <p>
                         <label for="id_content">Treść</label>
                         {{ form.content }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_category">Kategoria</label>
+                    </p>
+                    <p>
+                        <label for="id_categories">Kategoria</label>
                         {{ form.categories }}
-                    </div>
-                    <div class="form-group">
+                    </p>
+                    <p>
                         <label for="id_status">Status</label>
-                        <select name="status" id="id_status">
-                            <option value="1">Publiczna</option>
-                            <option value="2">Szkic</option>
-                            <option value="3">Ukryty</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
+                        {{ form.status }}
+                    </p>
+                    <p >
                         <label for="id_tags">Tagi</label>
-                        <input type="text" class="form-control" id="id_tags"
-                               name="tags" required="true">
-                    </div>
-                    <div class="form-group">
-                        <label for="id_post_image">Post image:</label>
+                        {{ form.tags }}
+                    </p>
+                    <p>
+                        <label for="id_post_image">Obrazek:</label>
                         {{ form.post_image }}
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Zapisz</button>
+                    </p>
+                    {{ form.errors }}
+                    <button type="submit" class="save btn btn-default">Send</button>
                 </form>
             </div>
         </div>

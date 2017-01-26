@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body %}
+
+    <div>
+        <h3>Twoje szkice</h3>
+        {% if other_posts %}
+            {% for post in other_posts %}
+                <div class="col-sm-4">
+                    <div class="entry-post">
+                        <div class="post-content">
+                            <div class="entry-thumbnail">
+                                <img src="{{ post.post_image.url }}">
+                            </div>
+                            <div class="time">
+                                {% if post.published_date %}
+                                    {{ post.published_date }}
+                                {% else %}
+                                    <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Opublikuj</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="entry-title">
+                            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                        </div>
+                        <p>{{ post.excerpt }}.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+
+            <p>Brak szkiców</p>
+
+        {% endif %}
+        <h3>Opublikowane posty</h3>
+        {% if live_posts %}
+            {% for post in live_posts %}
+                <div class="col-sm-4">
+                    <div class="entry-post">
+                        <div class="post-content">
+                            <div class="entry-thumbnail">
+                                <img src="{{ post.post_image.url }}">
+                            </div>
+                            <div class="time">
+                                <a href="#">{{ post.published_date }}</a>
+                            </div>
+                        </div>
+                        <div class="entry-title">
+                            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                        </div>
+                        <p>{{ post.excerpt }}.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+
+            <p>Brak szkiców</p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

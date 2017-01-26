@@ -22,7 +22,7 @@ from blog.views import index, show_profile, show_edit_userdata_page, edit_profil
     show_user_post, show_post_by_categories, post_remove, post_publish
 
 urlpatterns = [
-]
+
                   url(r'^admin/', admin.site.urls),
                   url(r'^$', index, name='index'),
                   url(r'^accounts/', include('registration.backends.default.urls')),
@@ -44,3 +44,4 @@ urlpatterns = [
                   url(r'^post/(?P<pk>\d+)/comment/$', add_comment_to_post, name='add_comment_to_post'),
                   url(r'^comment/(?P<pk>\d+)/approve/$', comment_approve, name='comment_approve'),
                   url(r'^comment/(?P<pk>\d+)/remove/$', comment_remove, name='comment_remove'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

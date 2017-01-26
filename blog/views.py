@@ -5,9 +5,10 @@ from django.template import RequestContext
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .models import Post, Category
-from .forms import UserForm, PostForm
+from .models import Post, Category, Comment
+from .forms import UserForm, PostForm, CommentForm
 from django.shortcuts import get_object_or_404, redirect
+from .search import get_query
 
 
 def index(request):
@@ -38,7 +39,7 @@ def edit_profile(request):
     print("tu juz nie")
     return render(request, "user/show_user.html", context)
 
-
+@login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -132,3 +133,35 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('index')
+
+@login_required
+def show_user_post(request, pk):
+    live_posts = Post.objects.filter(author_id=pk, status=1).order_by('published_date')
+    other_posts = Post.objects.filter(author_id=request.user.id, status=2).order_by('published_date')
+    return render(request, 'blog/show_user_posts.html', {'live_posts': live_posts, 'other_posts': other_posts})
+
+
+@login_required
+def show_post_by_categories(request, pk):
+    post_cat = Post.objects.filter(categories__id=pk)
+    return render(request, 'base.html', {'posts': post_cat})
+
+
+@login_required
+def blog_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'blog/blog_categories.html', {'categories':categories})
+
+
+def search(request):
+    query_string = ''
+    found_entries = None
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        entry_query = get_query(query_string, ['title'])
+        found_entries = Post.objects.filter(entry_query).order_by('-published_date')
+    elif ('w' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        entry_query = get_query(query_string, ['tags'])
+        found_entries = Post.objects.filter(entry_query).order_by('-published_date')
+    return render(request, 'base.html', {'posts': found_entries})

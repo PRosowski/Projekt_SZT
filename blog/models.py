@@ -37,7 +37,7 @@ class Post(models.Model):
     title = models.CharField(max_length=250, help_text='Maksymalnie 250 znakow')
     excerpt = models.CharField(blank=True, max_length=500,
                                help_text='Krotkie podsumowanie. Opcjonalne')
-    content = models.TextField()
+    content = tinymce_models.HTMLField()
     created_date = models.DateTimeField(
         default=timezone.now)
     published_date = models.DateTimeField(

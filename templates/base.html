@@ -39,9 +39,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if request.user.is_authenticated %}
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Twoje wpisy</a></li>
+                        <li><a href="{% url 'show_user_post' pk=request.user.id %}">Twoje wpisy</a></li>
                         <li><a href="{% url 'new_post' %}">Dodaj wpis</a></li>
-                        <li><a href="#">Zobacz kategorie</a></li>
+                        <li><a href="{% url 'blog_categories' %}">Zobacz kategorie</a></li>
                     </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
@@ -65,29 +65,31 @@
     </nav>
 
 
-        {% block body %}
-            {% if request.user.is_authenticated %}
-                <h2>Posty</h2>
-
-                {% for post in posts %}
-                    <div class="col-sm-4">
-                        <div class="entry-post">
-                            <div class="post-content">
-                                <div class="entry-thumbnail">
-                                    <img src="{{ post.post_image.url }}" >
-                                </div>
-                                <div class="time">
-                                    <a href="#">{{ post.published_date }}</a>
-                                </div>
-                            </div>
-                            <div class="entry-title">
-                                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
-                            </div>
-                            <p>{{ post.excerpt }}.</p>
+    {% block body %}
+        <form method="get" action="/search/">
+            <label for="id_q">Wyszukaj:</label>
+            <input type="text" name="q" id="id_q"/>
+            <input type="text" name="w" id="id_w"/>
+            <input type="submit" value="Submit"/>
+        </form>
+        {% for post in posts %}
+            <div class="col-sm-4">
+                <div class="entry-post">
+                    <div class="post-content">
+                        <div class="entry-thumbnail">
+                            <img src="{{ post.post_image.url }}">
+                        </div>
+                        <div class="time">
+                            <a href="#">{{ post.published_date }}</a>
                         </div>
                     </div>
-                {% endfor %}
-            {% endif %}
-        {% endblock %}
+                    <div class="entry-title">
+                        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                    </div>
+                    <p>{{ post.excerpt }}.</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endblock %}
 
 {% endblock %}

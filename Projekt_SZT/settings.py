@@ -157,4 +157,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '825066979622-63uoj8ck6na3r5tqkh9j7dld914k0psg'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'vQZyxHS9ITDaVjyGBL6vytSz'
 
-MEDIA_ROOT = 'C:\Users\rosos\PycharmProjects\Projekt_SZT\static\base\img'
+PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
+SITE_ROOT = PROJECT_ROOT
+MEDIA_ROOT= os.path.join(SITE_ROOT, 'media')
+MEDIA_URL = '/media/'
