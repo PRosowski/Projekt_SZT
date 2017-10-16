@@ -36,7 +36,6 @@ def edit_profile(request):
     context = {
         "form": form
     }
-    print("tu juz nie")
     return render(request, "user/show_user.html", context)
 
 @login_required
@@ -61,7 +60,6 @@ def post_modify(request, pk):
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            print("jestem")
             post = form.save(commit=False)
             post.save()
             return redirect('index')
@@ -76,18 +74,14 @@ def post_modify(request, pk):
 def new_post(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
-        print("to tu 2")
         if form.is_valid():  # All validation rules pass
-            print("jestem")
             post = form.save(commit=False)
             post.author = request.user
             post.save()
             form.save_m2m()
             return redirect('post_detail', pk=post.pk)
     else:
-        print("tu nie 2")
         form = PostForm()
-    print("potem tutaj 2")
     print(form.errors)
     return render(request, 'blog/new_post.html', {'form': form})
 

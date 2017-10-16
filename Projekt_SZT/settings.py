@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+eia%5s%=$7*s-+!w15%vviggzi&3$+n6c1xyt#xeja!h^+h_q'
+SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -50,7 +50,7 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
 EMAIL_HOST = 'mailtrap.io'
 EMAIL_HOST_USER = '371cbe7048c74b'
-EMAIL_HOST_PASSWORD = '4a080c15f17eea'
+EMAIL_HOST_PASSWORD = 'xxxxxxxxx'
 EMAIL_PORT = '2525'
 
 MIDDLEWARE = [
@@ -146,17 +146,16 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1842287662672758'
-SOCIAL_AUTH_FACEBOOK_SECRET = '38c5ac4fa1fb90edc50642639efe920d'
+SOCIAL_AUTH_FACEBOOK_KEY = 'xxxxxxxxx'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'xxxxxxxxxxxx'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '825066979622-63uoj8ck6na3r5tqkh9j7dld914k0psg'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'vQZyxHS9ITDaVjyGBL6vytSz'
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'xxxxxxxxxxxxxxxxxxxx'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'xxxxxxxxxxxxxxxxxxxxxxxx'
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE_ROOT = PROJECT_ROOT
 MEDIA_ROOT= os.path.join(SITE_ROOT, 'media')

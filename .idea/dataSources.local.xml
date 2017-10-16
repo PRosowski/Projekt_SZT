@@ -7,8 +7,9 @@
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <user-name>myprojectuser</user-name>
-      <user-password>dfdadfcbdfd9dfd9dfdddfc5dfd8dfce</user-password>
+      <introspection-schemas>Projekt_SZT:public</introspection-schemas>
       <resolve-scope>Projekt_SZT:myprojectuser,public</resolve-scope>
+      <unqualified-resolve-schemas>Projekt_SZT:myprojectuser,public</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>
